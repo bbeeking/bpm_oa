@@ -1,0 +1,53 @@
+<?xml version ='1.0' encoding ='UTF-8' ?>
+<definitions name='filepath'
+             targetNamespace='http://127.0.0.1/cts_20150622/api/basicDocument/'
+             xmlns:tns='http://127.0.0.1/cts_20150622/api/basicDocument/'
+             xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+             xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+             xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+             xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+             xmlns='http://schemas.xmlsoap.org/wsdl/'>
+
+    <types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://127.0.0.1/cts_20150622/api/basicDocument/">
+        </xsd:schema>
+    </types>
+
+    <message name='getFileRoadRequest'>
+        <part name="bianma" type="xsd:string"/>
+    </message>
+
+    <message name='getFileRoadResponse'>
+        <part name="path" type="xsd:string"/>
+    </message>
+
+    <portType name='FileRoadToEveryOneProt'>
+        <operation name='getFileRoad'>
+            <input message='tns:getFileRoadRequest'/>
+            <output message='tns:getFileRoadResponse'/>
+        </operation>
+    </portType>
+
+    <binding name='FileRoadSOAP' type='tns:FileRoadToEveryOneProt'>
+        <soap:binding style='rpc'
+                      transport='http://schemas.xmlsoap.org/soap/http'/>
+        <operation name='getFileRoad'>
+            <soap:operation soapAction='http://www.cwtservice.cn/newOperation/'/>
+            <input>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </input>
+            <output>
+                <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+                           encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name='FileRoadService'>
+        <port name='FileRoadSOAP' binding='tns:FileRoadSOAP'>
+            <soap:address location='http://127.0.0.1/cts_20150622/api/basicDocument/service.php'/>
+        </port>
+    </service>
+</definitions>

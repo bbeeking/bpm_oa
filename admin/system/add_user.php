@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/system.func.php'; $departmentAry = get_department_kv(); $groups = ShowGroup(); foreach ($groups as $v) { $group[$v['g_id']] = $v['g_description']; } include template('system','add_user'); 

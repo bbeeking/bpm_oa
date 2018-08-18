@@ -1,0 +1,2 @@
+<?php
+ function check_product_uri_info($uri,$paramValue) { $checkRes = stristr($uri,'product/catalog.php'); $checkQ = stristr($uri,'?'); if(count($checkRes) > 0 && !empty($checkRes)) { if(count($checkQ) > 0 && !empty($checkQ)) { return $uri."&catalog=".$paramValue; } else { return $uri."?catalog=".$paramValue; } } else return $uri; } 

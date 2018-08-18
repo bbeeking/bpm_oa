@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="../codebase/spreadsheet.php?load=js"></script>
+	<link rel="stylesheet" href="../codebase/dhtmlx_core.css" />
+	<link rel="stylesheet" href="../codebase/dhtmlxspreadsheet.css" />
+</head>
+<body>
+	<style>
+		.ssheet_cont {
+			width: 700px;
+			height: 450px;
+			float: left;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+			var dhx_sh1 = new dhtmlxSpreadSheet({
+				load: "../codebase/php/data.php",
+				save: "../codebase/php/data.php",
+				parent: "gridobj1",
+				icons_path: "../codebase/imgs/icons/",
+				autowidth: false,
+				autoheight: false
+			}); 
+			dhx_sh1.load("1");
+			var dhx_sh2 = new dhtmlxSpreadSheet({
+				load: "../codebase/php/data.php",
+				save: "../codebase/php/data.php",
+				parent: "gridobj2",
+				icons_path: "../codebase/imgs/icons/",
+				autowidth: false,
+				autoheight: false
+			}); 
+			dhx_sh2.load("2");
+		};
+	</script>
+	<div class="ssheet_cont" id="gridobj1"></div>
+	<div class="ssheet_cont" id="gridobj2"></div>
+</body>
+</html>

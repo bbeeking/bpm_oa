@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/system.func.php'; $gid = ceil($_GET['gid']); if ($gid > 0) { $sql = "select * from ".DB_DAEMDB.".".TB_SUFFIX."db_admingroup where g_id='".$gid."'"; if ($row = $db->query_first($sql)) { $grouprow = $row; } else { $db->close(); gourl('未查询到相关信息','group_list.php'); } } $group = ShowGroup(); include template('system','group_list'); 

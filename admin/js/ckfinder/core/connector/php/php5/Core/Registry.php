@@ -1,0 +1,2 @@
+<?php
+ if (!defined('IN_CKFINDER')) exit; class CKFinder_Connector_Core_Registry { private $_store = array(); private function isValid($key) { return array_key_exists($key, $this->_store); } public function set($key, $obj) { $this->_store[$key] = $obj; } public function get($key) { if ($this->isValid($key)) { return $this->_store[$key]; } } } 

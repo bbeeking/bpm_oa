@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', TRUE); require_once './includes/init.php'; $_SESSION['UserId'] = ''; $_SESSION['UserName'] = ''; $_SESSION['UserGroup']=''; $db->close(); gourl("","admin_login.php",'',"top"); 

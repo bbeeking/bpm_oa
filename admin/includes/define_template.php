@@ -1,0 +1,2 @@
+<?php
+ $sidebarIconGlyphs = array ( '0' => 'icon-home', '1' => 'icon-time', '2' => 'icon-leaf', '3' => 'icon-asterisk', '4' => 'icon-wrench', '5' => 'icon-search', '6' => 'icon-align-left', '7' => 'icon-cog', );

@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+.downceng{position:absolute;height:100%;width:100%;top:0;left:0;z-index:99}
+.downcengbg{background:#000000;height:100%;width:100%}
+.downcengcon{
+	border:1px solid #DDDDDD;
+	background:#FFFFFF;
+	position:absolute;
+	/*
+	top:50%;
+	left:33%;
+	margin-left:-270px;
+	*/
+}
+.dc_title{border-top:1px solid #FFFFFF;border-bottom:1px solid #dddddd;line-height:46px;height:46px;position:relative;color:#2a57b9;font-family:"Microsoft Yahei";font-weight:500;font-size:16px;z-index:199;padding-left:10px;}
+.dc_title a{background:url(../images/publicclose.jpg) no-repeat;height:24px;width:24px;top:11px;right:11px;text-indent:-999em;display:block;position:absolute;z-index:200}
+.dc_title a:hover{background-position:0 -25px;text-decoration:none}
+.dc_title img{vertical-align:middle;margin-right:10px}
+.dc_infocon{padding:10px;}
+.dc_infoul{}
+.dc_infoul li{overflow:hidden;zoom:1;border-bottom:1px dotted #CCCCCC;padding:10px 0}
+.dc_infoul_left{float:left;width:410px}
+.dc_infoul_left p{line-height:26px;color:#666666}
+.dc_infoul_left p strong{color:#333333}
+.dc_infoul_left p em{color:#333333}
+.dc_infoul_right{float:right;width:90px;}
+.dc_infoul_right a{width:80px;display:block;height:34px;line-height:32px;background:url(../images/publicdown.jpg) no-repeat;color:#FFFFFF;padding-left:10px}
+.dc_infoul_right a:hover{background-position:0 -34px;text-decoration:none}

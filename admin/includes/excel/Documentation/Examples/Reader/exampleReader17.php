@@ -1,0 +1,17 @@
+<?php
+ error_reporting(E_ALL); set_time_limit(0); date_default_timezone_set('Europe/London'); ?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>PHPExcel Reader Example #17</title>
+
+</head>
+<body>
+
+<h1>PHPExcel Reader Example #17</h1>
+<h2>Simple File Reader Loading Several Named WorkSheets</h2>
+<?php
+ set_include_path(get_include_path() . PATH_SEPARATOR . '../../../Classes/'); include 'PHPExcel/IOFactory.php'; $inputFileType = 'Excel5'; $inputFileName = './sampleData/example1.xls'; echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />'; $objReader = PHPExcel_IOFactory::createReader($inputFileType); echo 'Read the list of Worksheets in the WorkBook<br />'; $worksheetNames = $objReader->listWorksheetNames($inputFileName); echo 'There are ',count($worksheetNames),' worksheet',((count($worksheetNames) == 1) ? '' : 's'),' in the workbook<br /><br />'; foreach($worksheetNames as $worksheetName) { echo $worksheetName,'<br />'; } ?>
+<body>
+</html>

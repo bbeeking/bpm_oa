@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".item-list-show").click(function(c){var b=$(this).data("items"),a=$(this).prev(".item-list").find(".item-list-more").filter(":hidden");a.each(function(a){a<b&&$(this).show()});c.preventDefault();a.length<=b&&$(this).hide()})})

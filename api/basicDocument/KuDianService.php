@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../init/global.php'; try { $client = new SoapClient("http://127.0.0.1/cts_20150622/api/basicDocument/service.php?WSDL",array('trace'=>true)); $bianma = '123456789000'; $arrResult2 = $client->getFileRoad($bianma); print ($arrResult2); } catch (SOAPFault $e) { print $e; } 

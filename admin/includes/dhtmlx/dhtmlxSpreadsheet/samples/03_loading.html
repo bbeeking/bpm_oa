@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script src="../codebase/spreadsheet.php?sheet=5&parent=gridbox" ></script>
+<div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>
+<input type="input" id="sheetid" value="1" />
+<input type="button" value="Load/Create" onclick="load();" />
+<script>
+	function load() {
+		dhx_sh.clearAll();
+		dhx_sh.load(document.getElementById("sheetid").value);
+	}
+</script>

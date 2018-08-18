@@ -1,0 +1,1 @@
+$(document).ready(function(){$("#user_languages").chosen();$("#u_signature").autosize()})

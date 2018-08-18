@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/global.php'; include_once '../includes/db_oracle.php'; include_once '../includes/db_mysql.php'; $ociHost = '10.2.44.85'; $ociDb['host'] = $ociHost.':1521/ecology'; $ociDb['name'] = 'hr'; $ociDb['pass'] = 'hr'; $db2 = new db2(); $db2->connect($ociDb); $sql = "insert into test1 (date1) values(sysdate)"; $dataAry = array(); $query = $db2->query($sql); $sql = "commit"; $query = $db2->query($sql); @oci_close($db2);

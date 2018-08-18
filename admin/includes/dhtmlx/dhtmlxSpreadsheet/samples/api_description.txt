@@ -1,0 +1,37 @@
+The easiest way to initialize spreadsheet is to use next contruction:
+
+<script src="../codebase/spreadsheet.php?sheet=1" ></script>
+
+it's html-object. All parameters can be specified in options.
+../codebase/spreadsheet.php - path to file spreadsheet.php (it always in codebase directory)
+parameters:
+sheet - spreadsheet id (string or number)
+parent - id of parent object (in which spreadsheet will be created). Fullscreen mode is used if it's not specified or null
+key - key of spreadsheet. It can be useful to protect your data from edition.
+load - url to loader (usually default connector codebase/php/data.php)
+save - url to save (usually default connector codebase/php/data.php)
+
+
+About key usage.
+Key can be used to protect your spreadsheet from changes by unregistred users for example.
+In database you specify some key for sheet.
+If you are administrator and have access to sheet you can modify data.
+But if you don't have key, you can only look at data, but can't use it,
+cause readonly mode is turned on.
+
+
+Classic initialization:
+dhx_sh = new dhtmlxSpreadSheet({
+	load: "../codebase/php/data.php",
+	save: "../codebase/php/data.php",
+	parent: "gridobj",
+	icons_path: "../codebase/imgs/icons/"
+});
+
+All parameters are the same as in simple way initialization
+
+To load existing sheet or create new one you should use:
+dhx_sh.load(sheetid, key);
+
+sheetid - id of sheet to load or create
+key to access it (for existing sheet, optional)

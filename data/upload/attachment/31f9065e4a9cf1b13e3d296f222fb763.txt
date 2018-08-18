@@ -1,0 +1,92 @@
+被基地下发覆盖了总部的数据处理办法：
+1.清理基地人的下发回到基地，并移除借阅
+以下发人为基地的人为例：20陈尚运
+update beizhu set comp = 4,borrow2 = '',borrow3 = '',borrow4 = '',borrow5 = '',borrow6 ='',borrow7 ='' where ren = '20陈尚运' and comp = 1 and neworold = 'new'
+
+2.查出总部的需更新图号和日期决定唯一性
+select * from 
+(
+  select tuhao,max(day_time) maxTime,count(distinct neworold) countNum from beizhu where tuhao in (
+         select distinct tuhao from beizhu where ren = '20陈尚运' and comp = 4 and neworold = 'new'
+  ) and comp = 1 group by tuhao
+) t 
+where t.countNum = 1
+
+组装sql语句
+\t	' and day_time = '
+\n	' and comp = 1;\nupdate beizhu set neworold = 'new' where tuhao = '
+
+执行更新。
+
+
+
+
+
+
+
+
+
+
+
+
+
+明细帮忙增加后缀(HF)
+update beizhu t set t.tuhao=t.tuhao || '(HF)',t.tuhao2=t.tuhao2 || '(HF)' where t.comp='4' and tuhao like '%MX';
+
+
+
+
+
+
+
+图文号中存在小写字母的已借阅，但重庆酷点图纸未更新成功
+update beizhu set borrow6 = 1 where comp = 1 and tuhao in (
+upper('(72550L)FNhAaA1.00000001'),upper('KFR26WKFdAA.09000005'),upper('(72550L)FNhAaA2.09000001'),upper('(50582)FNhAaA2.BX000003'),upper('(50582)FNhAaA2.BX000002'),upper('(50582)FNhAaA2.03000001'),upper('(35594)FNAaA3.04000006')
+)
+
+
+//借阅图文时，需要考虑部分存在总部大小，基地小写问题。
+除用户发来的图号 如 Aa外 ，还应该增加对应的 upper('Aa') 确保无所遗漏
+
+
+
+//手工批量申请商品编码
+器\t	器","xinh"=>"
+\t	","wlbm"=>"
+\n	"),\narray("jbren"=>"祁玲,170280","cpmc"=>"
+
+
+
+基地图号需要优化：由基地人员提供新老图号对照excel
+\t\t\t	' where comp = 4 and  tuhao = '
+\t\t	'),guidanghao ='
+\t	',tuhao2=upper('
+\n	';\nupdate beizhu set tuhao = '
+
+
+增加文件受控
+查出图号和最新日期：
+select tuhao,max(day_time) from beizhu where tuhao in 
+('KB155.N40600MX(WHU)','KB155.N40800MX(WHU)','KB299.N46000MX(WHU)','KB299.N46200MX(WHU)','KB299.N46400MX(WHU)','KB299.N50200MX(WHU)','KB299.N50400MX(WHU)','KB299.N50412MX(WHU)','KB452.N41200MX(WHU)','KB452.N41400MX(WHU)','KB452.N41600MX(WHU)','CA432.N08200MX(WHU)','CA434.N08100MX(WHU)','CA435.N05300MX(WHU)','CA438.N03700MX(WHU)','CA439.N05000MX(WHU)','CA464.N01300MX(WHU)','CA432.N08200MX(WHU)','CA434.N08100MX(WHU)','CA435.N05300MX(WHU)','CA438.N03700MX(WHU)','CA439.N05000MX(WHU)','CA464.N01300MX(WHU)','KB155.N40600MX(WHU)','KB155.N40800MX(WHU)','KB299.N46000MX(WHU)','KB299.N46200MX(WHU)','KB299.N46400MX(WHU)','KB299.N50200MX(WHU)','KB299.N50400MX(WHU)','KB299.N50412MX(WHU)','KB452.N41200MX(WHU)','KB452.N41400MX(WHU)','KB452.N41600MX(WHU)')
+group by tuhao 
+替换语句
+\t	' and day_time = '
+\n	';\nupdate beizhu set neworold = 'new' where tuhao = '
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

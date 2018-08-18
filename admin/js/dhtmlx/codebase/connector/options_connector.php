@@ -1,0 +1,2 @@
+<?php
+ require_once("base_connector.php"); class OptionsDataItem extends DataItem{ function to_xml(){ if ($this->skip) return ""; $str =""; $str .= "<item value=\"".$this->xmlentities($this->data[$this->config->data[0]['db_name']])."\" label=\"".$this->xmlentities($this->data[$this->config->data[1]['db_name']])."\" />"; return $str; } } class SelectOptionsConnector extends Connector{ public function __construct($res,$type=false,$item_type=false,$data_type=false){ if (!$item_type) $item_type="OptionsDataItem"; parent::__construct($res,$type,$item_type,$data_type); } } ?>

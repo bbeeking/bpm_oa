@@ -1,0 +1,1 @@
+$(document).ready(function(){if($(".thumb_view").length)$(".box_trgr").addClass("active");else $(".list_trgr").addClass("active");$(".result_view a").click(function(a){if(!$(this).hasClass("active")){$(".result_view a").toggleClass("active");$(".search_panel").fadeOut("fast",function(){$(this).fadeIn("fast").toggleClass("box_view")})}a.preventDefault()})})

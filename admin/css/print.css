@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+body {font-size:13px;}
+
+/* 试卷的样式表 start */
+#paper-question-content {
+	margin-bottom:14px;
+	margin-top:23px;
+	line-height:25px;
+	overflow:hidden; /*防止图片溢出题目内容的大小*/
+}
+#paper-answer-content {
+	background-color:#EEEEEE; 
+	padding: 4px; 
+	white-space:nowrap;
+	margin-top:20px;
+}
+#paper-title {
+	font-family: "Trebuchet MS", Verdana, sans-serif; 
+	color: #444;
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+	margin-top:10px;
+	line-height:1.8em;
+}
+#paper-header-attribute {
+	text-align:right;
+}
+#paper-question-type {
+	font-family: "Trebuchet MS", Verdana, sans-serif; 
+	color: #444;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+	margin-top:2px;
+	margin-bottom:8px;
+}
+#paper-question-img {
+	float:right;
+	margin-top:10px;
+}
+#paper-answer-analysis {
+	padding: 1px 1px 1px 1px;
+	background-color:#DFF0D8;
+}
+
+/* 试卷的样式表 end */

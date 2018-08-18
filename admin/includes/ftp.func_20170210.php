@@ -1,0 +1,2 @@
+<?php
+ function ftp_download_file($ftpArray,$filePath,$target="./") { if(empty($ftpArray['host']) || empty($ftpArray['name']) || empty($ftpArray['pass'])) { die("链接失败"); } $conn = ftp_connect($ftpArray['host'],21); ftp_login($conn,$ftpArray['name'],$ftpArray['pass']); ftp_pasv($conn,TRUE); ftp_set_option($conn,FTP_TIMEOUT_SEC,300); $fileList = ftp_nlist($conn,""); ftp_chdir($conn,dirname($filePath)); $status = ftp_get($conn,basename($filePath),$target.basename($filePath),FTP_ASCII); ftp_close($conn); if($status) { return $target.basename($filePath); } else return($status); }

@@ -1,0 +1,1 @@
+<?php  define('IN_DAEM', true); include '../includes/init.php'; $userAry = get_user_realname(); $id = $_GET['id']; if (!empty($id)) { $sql = "select * from ".DB_DAEMDB.".".TB_SUFFIX."f_detail_record where id = '".$id."'"; $result = $db->query_first($sql); if (empty($result)) { gourl('未能找到该记录信息', 'financial_stat.php'); } } include template(); 

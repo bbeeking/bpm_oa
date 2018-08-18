@@ -1,0 +1,2 @@
+<?php
+header('Content-Type:text/html;charset=utf-8'); $client = new SoapClient("http://127.0.0.1/cts_20150622/api/basicDocument/service.php?WSDL" , array('trace'=>true)); try { $response = $client->getFileRoad('600004000510'); echo "<pre>"; print_r($response); }catch (SoapFault $sf){ var_dump($sf); print ($client->__getLastRequest()); print ($client->__getLastResponse()); } ?>

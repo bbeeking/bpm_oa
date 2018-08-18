@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/task.func.php'; $projects = ShowProject(0); $project = array(); foreach ($projects as $v) { $project[$v['pid']] = $v['project_name']; } include template(); 

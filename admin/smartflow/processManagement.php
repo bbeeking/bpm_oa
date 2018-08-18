@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $realNameAry = get_user_realname(); $dataAry = array(); $sql = "select * from process_management order by create_time DESC"; $query = $db->query($sql); while($row = $db->fetch_array($query)) { $row["config_data"] = json_decode($row["config_data"],true); $dataAry[$row["id"]] = $row; } include template();

@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); require_once '../includes/init.php'; if (!empty($_POST)) { $language = $_POST['lang_type']; $sql = "update ".DB_DAEMDB.".".TB_SUFFIX."db_adminuser set a_language='".$language."' where a_id='".$_SESSION['UserId']."'"; $db->query($sql); $_SESSION['LanguageType'] = $language; gourl(L("处理完成"), '','-1','parent'); } include template('system','system_settings'); 

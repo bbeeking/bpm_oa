@@ -1,0 +1,2 @@
+<?php
+ header("Content-Type: text/html; charset=utf-8"); error_reporting( E_ERROR | E_WARNING ); include "Uploader.class.php"; echo 123;die; $config = array( "savePath" => "upload/" , "allowFiles" => array( ".rar" , ".doc" , ".docx" , ".zip" , ".pdf" , ".txt" , ".swf" , ".wmv" ) , "maxSize" => 100000 ); $up = new Uploader( "upfile" , $config ); $info = $up->getFileInfo(); echo '{"url":"' .$info[ "url" ] . '","fileType":"' . $info[ "type" ] . '","original":"' . $info[ "originalName" ] . '","state":"' . $info["state"] . '"}'; 

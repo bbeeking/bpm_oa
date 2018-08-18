@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; include '../includes/ftp.func.php'; $filePath = empty($_GET["f"]) ? gourl("缺少文件参数!","",-1) : $_GET["f"]; $status = ftp_download_file($ftpConfig,$filePath); if(!$status) { $status = ftp_download_file($ftpSlaveConfig,$filePath); } if($status) { downloadFile($status); } else { gourl("图档文件缺失!请检查PDM下发状态是否存在异常，如仍未能解决问题，请联系管理员!","",-1); } 

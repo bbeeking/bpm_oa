@@ -1,0 +1,6 @@
+<?php
+ define('IN_DAEM', true); include_once './init/global.php'; require_once("./init/db_mysql.php"); require_once("./init/db_oracle.php"); ini_set("max_execution_time",86400); set_time_limit(86400); $db = new db(); $db->connect($slaveDb); $ociHost = '10.1.18.213'; $ociDb['host'] = $ociHost.'/jcdoc'; $ociDb['name'] = 'kudian'; $ociDb['pass'] = 'greeic2012tw'; $db2 = new db2(); $db2->connect($ociDb); $insertSql = "insert into user (account,password,gid,grade,
+              dpid,department,name,number,tel,
+              logtime,logip,ispermit,regtime,language) VALUES "; $sql = "select * from YONGHU t"; $query = $db2->query($sql); while($row = $db2->fetch_array($query)) { foreach($row as $rowKey=>$rowValue) { $row[$rowKey] = addslashes($rowValue); } $insertSql .= "('".$row["USID"]."','','".$row["ROLE"]."','".$row["GRADE"]."',
+                    '".$row["DPID"]."','".$row["DPNM"]."','".$row["UNAM"]."','','',
+                    '','','','',''),"; } $insertSql = trim($insertSql,','); $res = $db->query($insertSql); if(!$res) { echo "success！";}

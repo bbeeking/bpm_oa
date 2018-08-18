@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/system.func.php'; chkpurview('editmenu'); $id = ceil($_GET['id']); $sql = "select * from ".DB_DAEMDB.".".TB_SUFFIX."db_menu where m_id='".$id."'"; if (!$row = $db->query_first($sql)) { $db->close(); gourl('没有查询到相关信息。','',-1); } $seced = &$row['m_parentid']; $ary_first = array(0=>'请选择'); $menuinfo = $row; $dataAry = array(); get_infinite_classify(0,$dataAry); include template('system','add_menu'); 

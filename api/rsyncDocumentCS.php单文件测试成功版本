@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once './init/global.php'; include_once './init/ftp.func.php'; require_once("./init/db_mysql.php"); $filePath = "2012/201209/neirong/tuzhi/CDR/KF35WNHC013.BX000001+.cdr"; $status = ftp_download_file($ftpCSBaseConfig,$filePath); if($status) { mkdir(DAEM_DATA_ROOT."upload/CS/".dirname($filePath),0777,true); copy($status,DAEM_DATA_ROOT."upload/CS/".$filePath); unlink($status); echo "成功移动文件!";die; } else { gourl("图档文件缺失!请检查PDM下发状态是否存在异常，如仍未能解决问题，请联系管理员!","",-1); } 

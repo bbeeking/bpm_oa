@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', TRUE); include_once '../includes/init.php';; $projectName = trim($_GET['project_name']); $pid = trim($_GET['pid']); if ($pid != '') { $cond = "and m_id != '".$mid."'"; } $sql = "select pid from ".DB_DAEMDB.".".TB_SUFFIX."task_project where project_name ='".$projectName."' ".$cond.""; if ($db->query_first($sql)) { echo '1'; } else { echo '2'; } $db->close(); 

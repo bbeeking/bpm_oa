@@ -1,0 +1,9 @@
+<?php  define('IN_DAEM', true); include '../includes/init.php'; $sign_key = $_GET['sign_key']; $status = $_GET['status']; if (!empty($_GET['commit']) && !empty($sign_key)) { $sql = "select sign_key from ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record where sign_key = '".$sign_key."' limit 1"; $result = $db->query_first($sql); if (empty($result['sign_key'])) { gourl('未能找到该记录', '', -1); } if (!empty($result['application_status']) && $result['application_status'] != '1') { gourl('该记录已审批', 'hr_teacher_course_log.php'); } } elseif (!empty($sign_key) && !empty($status)) { $sql = "select id from ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record where sign_key = '".$sign_key."'"; $result = $db->query_first($sql); if (isset($appStateAry[$status])) { if ($result['id'] > 0) { $sqlA = "update ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record 
+					set application_status = '".$status."',
+						approver = '".$_SESSION['UserName']."',
+						approval_date = '".date('Y-m-d')."'
+					where sign_key = '".$sign_key."'"; $sqlB = "update ".DB_DAEMDB.".".TB_SUFFIX."hr_student_course_record 
+					set application_status = '".$status."',
+						approver = '".$_SESSION['UserName']."',
+						approval_date = '".date('Y-m-d')."'
+					where sign_key = '".$sign_key."'"; $sql_ary[] = $sqlA; $sql_ary[] = $sqlB; if ($db->_query($sql_ary)) { gourl('事务更新成功', '', -1); } else { gourl('事务更新失败，请联系管理员', '', -1); } } else { gourl('该签名记录不存在', '', -1); } } elseif ($status == '4') { if ($result['id'] > 0) { $sqlA = "delete from ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record where sign_key = '".$sign_key."'"; $sqlB = "delete from ".DB_DAEMDB.".".TB_SUFFIX."hr_student_course_record where sign_key = '".$sign_key."'"; $sql_ary[] = $sqlA; $sql_ary[] = $sqlB; if ($db->_query($sql_ary)) { gourl('删除成功', '', -1); } else { gourl('删除失败，请联系管理员', '', -1); } } else { gourl('该签名记录不存在', '', -1); } } else { gourl('未能识别的操作', '', -1); } } else { gourl('访问非法', '', -1); }

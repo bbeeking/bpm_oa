@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/system.func.php'; $dataAry = array(); get_infinite_classify(0,$dataAry); include template('system','add_menu');

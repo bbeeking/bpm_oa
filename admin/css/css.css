@@ -1,0 +1,79 @@
+/* CSS Document */
+body,input,li,div,table,ul,form {
+font-size:12px;
+margin:0px;
+}
+.black_14_bold {
+color:#000000;
+font-size:14px;
+font-weight:bold;
+}
+.margin_top_10 {
+margin-top:10px;
+}
+.margin_top_5 {
+margin-top:5px;
+}
+a {
+text-decoration:none;
+color:#335B64;
+}
+a:hover {
+text-decoration:underline;
+color:#FF8000;
+}
+a:active {
+text-decoration:none;
+color:#FF8000;
+}
+.exit_item {
+background: url(images/menu_arrow.gif) no-repeat 0px 3px;
+list-style-type:none;
+}
+.tr0 {
+	background-color:#EDF2F7;
+}
+.tr1 {
+	background-color:#E0F0F0;
+}
+
+/* hovered items */
+tr:hover,
+.hover {
+    background: #CCFFCC;
+    /*color: #c00008;
+    font-weight:900; */
+}
+
+.bg1{
+background-image:url(../images/bg01.gif);
+color:#FFFFFF;
+font-size:14px;
+font-weight:bold;
+width:100px;
+height:20px;
+padding-top:5px;
+}
+.bg2{
+background-image:url(../images/bg02.gif);
+color:#000000;
+font-size:12px;
+font-weight:bold;
+width:100px;
+height:17px;
+padding-top:8px;
+margin-left:3px;
+}
+.trEven {
+	background-color:#EDF2F7;
+}
+.trOdd {
+	background-color:#E0F0F0;
+}
+
+/*loading DIV*/
+.bar_div{width:220px;height:32px;position:absolute;border:1px #000000 dashed;margin-top:-16px; margin-left:-105px;top:50%; left:50%; padding:4px;}
+.bar_icons{background:url(../images/large-loading.gif) no-repeat;width:32px;height:32px;margin-right:8px;float:left;margin-left:8px;vertical-align:middle;}
+.bar_font{font-size:12px;color:#000000;line-height:32px;}
+
+.box {width:50%; float:left; display:inline;}

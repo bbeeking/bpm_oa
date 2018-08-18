@@ -1,0 +1,22 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $userName = $_SESSION['UserName']; $recordDate = date('Y-m-d'); $time = time(); if (!empty($_POST['submit'])) { $name = !empty($_POST['name'])? htmlspecialchars(trim($_POST['name'])) : ''; $birth = !empty($_POST['birth'])? $_POST['birth'] : ''; $school = !empty($_POST['school'])? $_POST['school'] : ''; $parent = !empty($_POST['parent'])? $_POST['parent'] : ''; $enrollment_date = !empty($_POST['enrollment_date'])? $_POST['enrollment_date'] : ''; $addr = !empty($_POST['addr'])? $_POST['addr'] : ''; $sex = !empty($_POST['sex'])? $_POST['sex'] : ''; $grade = !empty($_POST['grade'])? $_POST['grade'] : ''; $tel = !empty($_POST['tel'])? $_POST['tel'] : ''; $course = !empty($_POST['course'])? $_POST['course'] : ''; $status = !empty($_POST['status'])? $_POST['status'] : ''; $entry_level = !empty($_POST['entry_level']) ? $_POST['entry_level'] : ''; $qq = !empty($_POST['qq'])? $_POST['qq'] : ''; $phone = !empty($_POST['phone'])? $_POST['phone'] : ''; $channel = !empty($_POST['channel'])? $_POST['channel'] : ''; $detail = !empty($_POST['myEditor']) ? $_REQUEST['myEditor'] : ''; if (!empty($name) && !empty($birth) && !empty($school) && !empty($parent) && !empty($enrollment_date) && !empty($addr) && !empty($sex) && !empty($grade) && !empty($tel) && !empty($course) && !empty($status) && !empty($entry_level)) { $recordPrimaryId = $time.(int)date('Y-m-d',strtotime($birth)).(int)$sex.$grade; $sql = "SELECT sid FROM ".DB_DAEMDB.".".TB_SUFFIX."hr_student WHERE sid = '".$recordPrimaryId."'"; $check = $db->query_first($sql); if (!empty($check['sid']) && $check['sid'] > 0) { gourl('该用户记录编号已存在，原因可能如下：1.操作频繁  2.系统错误 3.非法操作 ；您应尝试返回重新提交，如问题仍未能解决请联系管理员解决！', '', -1); } $sql = "INSERT INTO ".DB_DAEMDB.".".TB_SUFFIX."hr_student 
+				SET sid = '".$recordPrimaryId."',
+				name = '".$name."',
+				birth = '".$birth."',
+				sex = '".$sex."',
+				grade = '".$grade."',
+				course = '".$course."',
+				entry_level = '".$entry_level."',
+				enrollment_date = '".$enrollment_date."',
+				addr = '".$addr."',
+				parent = '".$parent."',
+				tel = '".$tel."',
+				phone = '".$phone."',
+				qq = '".$qq."',
+				school = '".$school."',
+				channel = '".$channel."',
+				status = '".$status."',
+				detail = '".$detail."',
+				builder = '".$userName."',
+				create_date = '".date('Y-m-d H:i:s',$time)."',
+				last_operation_time = '".date('Y-m-d H:i:s',$time)."'"; $query = $db->query($sql); if ($query) { gourl('添加成功','hr_student_view.php?sid='.$recordPrimaryId); } else { gourl('添加失败','', -1); } } else { gourl('请填写所需内容','',-1); } } include template();

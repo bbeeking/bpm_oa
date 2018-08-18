@@ -1,0 +1,30 @@
+<script language="javascript" type="text/javascript" src="WdatePicker.js"></script>
+
+
+<input class="Wdate" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"> <font color=red>&lt;- 点我弹出日期控件(年月日)</font>
+<br/>
+<input class="Wdate" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"> <font color=red>&lt;- 点我弹出日期控件(年月日时分秒)</font>
+
+<br> IE Opera Safari浏览器可以直接双击打开看演示
+<br><font color=red><b>注意:如果您使用Firefox或Chrome浏览器,请使用 localhost/虚拟目录/ 这样的地址打开,不要直接双击文件</b></font>
+
+<br><br>
+更多demo请访问官方主页 <a href="http://www.my97.net">http://www.my97.net</a>
+
+<br><br>
+<h1>请务必仔细阅读下面的文字</h1>
+<pre>
+注意:此版本为 4.7 Release build 20100917
+
+更新内容:
+[新增]输入智能调整,在输入日期时,会根据日期格式自动调整
+[新增]默认显示快速选择的选项
+[新增]周数算法选择
+[新增]全键盘操作(键盘控制开关),不用鼠标也可以选择日期
+[新增]dateFmt可以直接使用%y %M %d %ld等内置常量
+[新增]isShowOK属性,可以隐藏确定按钮
+[新增]当使用onfocus触发时,焦点在日期控件时,也会弹出日期控件
+[新增]autoUpdateOnChanged属性:在修改年月日时分秒等元素时是否自动更新到el
+[修改]源文件的编码问题
+[修正]在双月模式时,可以隐藏其他月份的日期,并且自动对齐
+[修正]{M:+1},逢2月或大小月会有些误差

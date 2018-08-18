@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include './includes/init.php'; $userAry = get_user_realname(); $username = $_SESSION['UserName']; $weekDay = date('w',time()); $weekName = $weekAry[$weekDay]; include template('','top'); 

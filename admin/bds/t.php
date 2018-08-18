@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $filePath = "DownloadFile/2017/01/neirong/tuzhi/63229980091A1.cdr"; $ftpServer = "10.1.11.137"; $ftpUser = "basicDocumentG"; $ftpPass = "qwe!23"; $conn = ftp_connect($ftpServer,21); ftp_login($conn,$ftpUser,$ftpPass); ftp_pasv($conn,TRUE); ftp_set_option($conn,FTP_TIMEOUT_SEC,300); $fileList = ftp_nlist($conn,""); ftp_chdir($conn,dirname($filePath)); ftp_get($conn,basename($filePath),basename($filePath),FTP_ASCII); ftp_close($conn);

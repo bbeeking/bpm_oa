@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; include '../templateManage/templateConfig.php'; $type = empty($_GET["type"]) ? "outer" : $_GET["type"]; if($type == "inner") { include '../templateManage/templateConfigInner.php'; } $userAry = get_user_realname(); $dataAry = array(); $query = "select * from [DRSDatabase].[dbo].[TaskEntity] where [typeOf] = '".$type."'"; $stmt = $conn->query( $query ); while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ){ $dataAry[] = $row; } $dataAryCount = count($dataAry); include template();

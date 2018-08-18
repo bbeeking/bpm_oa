@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $nodeRoleConfigAry = array(); $sql = "select * from db_department"; $query = $db->query($sql); while($row = $db->fetch_array($query)) { $nodeRoleConfigAry["department_".$row["id"]] = $row["name"]; } $sql = "select * from db_adminuser"; $query = $db->query($sql); while($row = $db->fetch_array($query)) { $nodeRoleConfigAry["user_".$row["a_account"]] = $row["a_username"]; } include template();

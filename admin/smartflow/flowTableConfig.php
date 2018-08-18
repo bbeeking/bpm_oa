@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $templateDefineAry = array(); $sql = "select * from excel_template_struct"; $query = $db->query($sql); while ($row = $db->fetch_array($query)) { $templateDefineAry[$row["id"]] = $row["name"]; } include template();

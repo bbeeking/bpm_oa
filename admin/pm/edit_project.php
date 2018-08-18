@@ -1,0 +1,2 @@
+<?php
+ define('IN_DAEM', true); include_once '../includes/init.php'; include_once '../includes/task.func.php'; $pid = ceil($_GET['pid']); $sql = "select * from ".DB_DAEMDB.".".TB_SUFFIX."task_project where pid='".$pid."'"; if (!$row = $db->query_first($sql)) { $db->close(); gourl('没有查询到相关信息。','',-1); } $projectinfo = $row; $ary_first = array(0=>'请选择'); $projects = ShowProject(0); foreach ($projects as $v) { $project[$v['pid']] = $v['project_name']; } include template('task','add_project'); 

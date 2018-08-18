@@ -1,0 +1,14 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; $userAry = get_user_realname(); $studentInfoAry = get_student_info('y'); $courseInfoAry = get_course_info($_SESSION['UserName']); $recordDate = date('Y-m-d',DAEM_TIME); $key = $_GET['key']; if ($key == 'locc') { $isSpecial = '1'; $courseInfoAry = get_course_info(); } if (!empty($_POST['submit'])) { $recordDate = $_POST['recordDate']; $teacher = $_POST['teacher']; $cid = $_POST['course']; $startTime = $_POST['startTime']; $endTime = $_POST['endTime']; $absence_str = $_POST['options_value']; $courseExtendInfo = !empty($_POST['myEditor']) ? $_REQUEST['myEditor'] : ''; $sign_key = $cid.(int)date('ymd',strtotime($recordDate)).(int)str_replace(':', '', $startTime).(int)str_replace(':', '', $endTime); $sql = "select a.id as a_id,b.id as b_id from ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record a,
+			".DB_DAEMDB.".".TB_SUFFIX."hr_student_course_record b 
+			where a.sign_key = '".$sign_key."' or b.sign_key = '".$sign_key."'"; $result = $db->query_first($sql); if (!empty($result['a_id']) || !empty($result['b_id'])) { gourl('发生异常,该事务已经签名,请联系管理员!', '',-1); } $sql_ary = array(); $sqlA = "insert into ".DB_DAEMDB.".".TB_SUFFIX."hr_teacher_course_record 
+			set sign_key = '".$sign_key."',
+			cid = '".$cid."',
+			teacher = '".$teacher."',
+			course_date = '".$recordDate."',
+			startTime = '".$startTime."',
+			endTime = '".$endTime."',
+			course_extend = '".$courseExtendInfo."',
+			application_status = '1',
+			create_time = '".DAEM_TIME."'"; $sql_ary[] = $sqlA; $sidAry = array(); $sql = "select sid from ".DB_DAEMDB.".".TB_SUFFIX."hr_course_enroll where cid = '".$cid."' and status = '1'"; $query = $db->query($sql); while ($row = $db->fetch_array($query)) { if (isset($studentInfoAry[$row['sid']])) { $sidAry[] = $row['sid']; } } if (!empty($sidAry)) { $absenceStuAry = explode(',', $absence_str); $sqlB = "insert into ".DB_DAEMDB.".".TB_SUFFIX."hr_student_course_record 
+				(sign_key,cid,sid,course_date,startTime,endTime,pay_status,application_status,create_time,absence) values "; foreach ($sidAry as $key=>$val) { if (!in_array($val, $absenceStuAry)) { $sqlB .= "('".$sign_key."','".$cid."','".$val."','".$recordDate."','".$startTime."','".$endTime."','1','1','".DAEM_TIME."','2'),"; $attend_sign = 1; } else { $sqlB .= "('".$sign_key."','".$cid."','".$val."','".$recordDate."','".$startTime."','".$endTime."','1','1','".DAEM_TIME."','1'),"; } } $sqlB = trim($sqlB,','); $sql_ary[] = $sqlB; if ($attend_sign != 1) { gourl('该课程出现全部学员缺席，教师不可以签到', '',-1); } } else { gourl('该课程未分配学员,请返回添加', '',-1); } $res = $db->_query($sql_ary); if ($res) { gourl('签到成功', 'hr_teacher_course_log.php'); } } include template();

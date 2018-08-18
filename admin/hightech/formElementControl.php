@@ -1,0 +1,13 @@
+<?php
+ define('IN_DAEM', true); include '../includes/init.php'; require_once "./excelBIConfig.php"; require_once "../includes/class/pinyin.class.php"; $actName = "新增"; if(!empty($_POST)) { if(empty($_POST["name"]) || empty($_POST["elementPropertySign"])) gourl("缺少响应参数!","",-1); $elementPropertySign = $_POST["elementPropertySign"]; $sql = "select id from element_property_extra where element_property_sign = '".$elementPropertySign."' or name = '".$_POST["name"]."'"; $result = $db->query_first($sql); $_POST["defaultValueConfig"] = str_replace(array("\'","&#039;"),array("\"","&quot;"),$_POST["defaultValueConfig"]); if($result["id"]>0) { $op = "修改"; $sql = "update element_property_extra
+                set name = '".$_POST["name"]."',
+                default_value_config = '".$_POST["defaultValueConfig"]."',
+                elementTypeOf = '".$_POST["elementTypeOf"]."',
+                elementProperty = '".$_POST["elementProperty"]."',
+                JSString = '".$_POST["JSString"]."',"; $sql .= "builder = '".$_SESSION["UserName"]."',"; $sql .= "status = '1',"; $sql .= "create_time = '".DAEM_TIME."' "; $sql .= "where element_property_sign = '".$elementPropertySign."'"; } else { $op = "添加"; $sql = "insert into element_property_extra
+                set name = '".$_POST["name"]."',
+                element_property_sign = '".$_POST["elementPropertySign"]."',
+                default_value_config = '".$_POST["defaultValueConfig"]."',
+                elementTypeOf = '".$_POST["elementTypeOf"]."',
+                elementProperty = '".$_POST["elementProperty"]."',
+                JSString = '".$_POST["JSString"]."',"; $sql .= "builder = '".$_SESSION["UserName"]."',"; $sql .= "status = '1',"; $sql .= "create_time = '".DAEM_TIME."',"; $sql = rtrim($sql,","); } $res = $db->query($sql); if($res) { gourl("添加元素规范成功!","formElementControl.php"); } else { gourl("添加失败!","",-1); } } if(!empty($_GET["element_property_sign"]) && $_GET["act"] == "del") { $sql = "delete from element_property_extra where element_property_sign = '". $_GET["element_property_sign"]."'"; $res = $db->query($sql); if($res) { gourl("删除元素成功!","?"); } else { gourl("删除失败!","",-1); } } if(!empty($_GET["element_property_sign"])) { $actName = "修改"; $sql = "select * from element_property_extra where element_property_sign = '". $_GET["element_property_sign"]."'"; $result = $db->query_first($sql); } $dataAry = array(); $sql = "select * from element_property_extra order by id DESC"; $query = $db->query($sql); while($row = $db->fetch_array($query)) { $dataAry[$row["id"]] = $row; } include template();
